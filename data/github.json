@@ -1,0 +1,86 @@
+{
+  "repositories": 35,
+  "languages": [
+    {
+      "name": "TypeScript",
+      "percent": 51.9
+    },
+    {
+      "name": "PHP",
+      "percent": 30.1
+    },
+    {
+      "name": "Vue",
+      "percent": 11.9
+    },
+    {
+      "name": "Python",
+      "percent": 2.1
+    },
+    {
+      "name": "Blade",
+      "percent": 1.7
+    },
+    {
+      "name": "JavaScript",
+      "percent": 1
+    }
+  ],
+  "languageCount": 20,
+  "contributions": 100,
+  "weeks": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    7,
+    4,
+    0,
+    0,
+    0,
+    0,
+    44,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    13,
+    0,
+    0,
+    2,
+    16,
+    8,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ]
+}

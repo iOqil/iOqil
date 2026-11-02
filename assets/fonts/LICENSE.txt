@@ -1,0 +1,8 @@
+Copyright 2023 The Tektur Project Authors (https://www.github.com/hyvyys/Tektur)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+
+Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono) JetBrainsMono-Italic[wght].ttf: Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
+
+
+Both fonts are licensed under the SIL Open Font License 1.1: https://openfontlicense.org
