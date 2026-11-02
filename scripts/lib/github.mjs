@@ -27,9 +27,20 @@ export function languageShares(repositories, limit = 6) {
 }
 
 /**
- * Refreshes the saved figures. The Actions token only sees public repositories, so repository and language
- * totals are replaced only when a run can see private ones too. A failed request keeps the last good figures.
+ * The default Actions token only sees public repositories, so repository and language totals change only when
+ * the run can see private ones too: a PROFILE_TOKEN secret, or running this script locally with your own token.
  */
+export function mergeFigures(saved, { contributionsCollection: { contributionCalendar: calendar }, repositories }) {
+  const seesPrivate = repositories.nodes.some(repository => repository.isPrivate)
+  return {
+    repositories: seesPrivate ? repositories.totalCount : saved.repositories,
+    languages: seesPrivate ? languageShares(repositories.nodes) : saved.languages,
+    contributions: calendar.totalContributions,
+    weeks: calendar.weeks.map(week => week.contributionDays.reduce((sum, day) => sum + day.contributionCount, 0))
+  }
+}
+
+/** Refreshes the saved figures. A failed request keeps the last good ones. */
 export async function refreshGithubData(login, token) {
   const saved = readSaved()
   if (!token) return saved
@@ -41,17 +52,7 @@ export async function refreshGithubData(login, token) {
     })
     const answer = await response.json()
     if (!response.ok || answer.errors || !answer.data?.user) throw new Error(`GitHub answered ${response.status}`)
-    const { contributionsCollection: { contributionCalendar: calendar }, repositories } = answer.data.user
-    const seesPrivate = repositories.nodes.some(repository => repository.isPrivate)
-    const next = {
-      repositories: seesPrivate ? repositories.totalCount : saved.repositories,
-      languages: seesPrivate ? languageShares(repositories.nodes) : saved.languages,
-      languageCount: seesPrivate
-        ? new Set(repositories.nodes.flatMap(repository => repository.languages.edges.map(edge => edge.node.name))).size
-        : saved.languageCount,
-      contributions: calendar.totalContributions,
-      weeks: calendar.weeks.map(week => week.contributionDays.reduce((sum, day) => sum + day.contributionCount, 0))
-    }
+    const next = mergeFigures(saved, answer.data.user)
     writeFileSync(dataFile, `${JSON.stringify(next, null, 2)}\n`)
     return next
   } catch (error) {

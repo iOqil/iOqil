@@ -22,7 +22,8 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - name: Rebuild the cards
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Optional: a read-only token that sees private repositories keeps the repository and language figures current.
+          GITHUB_TOKEN: ${{ secrets.PROFILE_TOKEN || secrets.GITHUB_TOKEN }}
         run: node scripts/build-cards.mjs
       - name: Check the cards
         run: node --test test/cards.test.mjs
@@ -32,13 +33,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
       - name: Commit what changed
+        # Only the picture the README and ioqil.uz use is kept; the action's other variants would bloat the history.
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add cards data profile-3d-contrib
+          git add cards data profile-3d-contrib/profile-night-view.svg
           if git diff --cached --quiet; then
             echo "Nothing changed."
           else
             git commit -m "chore: refresh profile figures"
+            git pull --rebase origin main
             git push
           fi

@@ -1,5 +1,5 @@
 {
-  "repositories": 35,
+  "repositories": 36,
   "languages": [
     {
       "name": "TypeScript",
@@ -11,7 +11,7 @@
     },
     {
       "name": "Vue",
-      "percent": 11.9
+      "percent": 12
     },
     {
       "name": "Python",
@@ -23,10 +23,9 @@
     },
     {
       "name": "JavaScript",
-      "percent": 1
+      "percent": 1.1
     }
   ],
-  "languageCount": 20,
   "contributions": 102,
   "weeks": [
     0,
@@ -54,8 +53,8 @@
     0,
     0,
     0,
-    1,
-    3,
+    0,
+    4,
     0,
     0,
     0,

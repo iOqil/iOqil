@@ -63,7 +63,7 @@ export function caravanCard(profile, github) {
   const css = `
 .walk{animation:walk ${walk}s linear infinite}
 @keyframes walk{from{transform:translateX(${start}px)}to{transform:translateX(${width}px)}}
-.a{animation:a .5s steps(1) infinite}.b{animation:b .5s steps(1) infinite}
+.a{animation:a .5s steps(1) infinite}.b{opacity:0;animation:b .5s steps(1) infinite}
 @keyframes a{0%{opacity:1}50%{opacity:0}}
 @keyframes b{0%{opacity:0}50%{opacity:1}}
 .lit{opacity:0;animation:lit ${walk}s linear infinite}

@@ -45,11 +45,10 @@ export function passCard(profile, github) {
     const x = 352 + index * 202
     return `<rect x="${x}" y="92" width="190" height="104" rx="6" fill="${color.raised}" stroke="${color.line}"/><text x="${x + 18}" y="142" class="t" font-size="38" fill="${color.gold}">${escapeXml(tile.value)}</text><text x="${x + 18}" y="170" class="c" font-size="13.5" fill="${color.mist}">${escapeXml(tile.label)}</text>`
   }).join('')
-  const max = Math.max(...github.languages.map(language => language.percent))
   const bars = github.languages.map((language, index) => {
     const y = 262 + index * 32
     const full = 370
-    return `<text x="352" y="${y + 13}" class="c" font-size="15" fill="${color.parchment}">${escapeXml(language.name)}</text><rect x="480" y="${y}" width="${full}" height="16" rx="3" fill="${color.raised}"/><rect x="480" y="${y}" width="${Math.max(4, (language.percent / max) * full).toFixed(1)}" height="16" rx="3" fill="${index === 0 ? color.gold : color.turquoise}" class="bar" style="animation-delay:${index * 0.12}s"/><text x="962" y="${y + 13}" text-anchor="end" class="c" font-size="15" fill="${color.mist}">${language.percent}%</text>`
+    return `<text x="352" y="${y + 13}" class="c" font-size="15" fill="${color.parchment}">${escapeXml(language.name)}</text><rect x="480" y="${y}" width="${full}" height="16" rx="3" fill="${color.raised}"/><rect x="480" y="${y}" width="${Math.max(4, (language.percent / 100) * full).toFixed(1)}" height="16" rx="3" fill="${index === 0 ? color.gold : color.turquoise}" class="bar" style="animation-delay:${index * 0.12}s"/><text x="962" y="${y + 13}" text-anchor="end" class="c" font-size="15" fill="${color.mist}">${language.percent}%</text>`
   }).join('')
   const css = `
 .swing{transform-origin:170px 0;animation:swing 6s ease-in-out infinite}
